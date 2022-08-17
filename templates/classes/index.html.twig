@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List of classes!
+{% endblock %}
+
+{% block body %}
+	<div class="container col-md-8 text-center mt-3">
+		<table class="table table-light">
+			<tr>
+				<th colspan="4">
+					<h1 class="text text-primary">Class List</h1>
+				</th>
+			</tr>
+			<tr>
+				<th class="text text-success">Class ID</th>
+				<th class="text text-success">Class Name</th>
+			</tr>
+			{% for class in classes %}
+				<tr>
+					<td>{{ class.id }}</td>
+					<td>{{ class.name }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+{% endblock %}
+

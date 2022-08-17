@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List of Subjects
+{% endblock %}
+
+{% block body %}
+	<div class="container col-md-8 text-center mt-3">
+		<table class="table table-light">
+			<tr>
+				<th colspan="4">
+					<h1 class="text text-primary">Subject List</h1>
+				</th
+				{% if is_granted('ROLE_ADMIN') %}>
+				<th>
+				<a href="{{ path('subject_add') }}" class="btn btn-info">Add subject</a>
+				</th>
+				{% endif %}	
+			</tr>
+			<tr>
+				<th class="text text-success">Subject ID</th>
+				<th class="text text-success">Subject Name</th>
+				<th class="text text-success">Subject Fee</th>
+				<th class="text text-success">Check detail</th>
+			</tr>
+			{% for subject in subjects %}
+				<tr>
+					<td>{{ subject.id }}</td>
+					<td>{{ subject.name }}</td>
+					<td>{{ subject.fee }}</td>
+					<td>
+						{% if is_granted('ROLE_ADMIN') %}
+						    <a class="text-decoration-none" href="{{ path('subject_detail', {'id' : subject.id }) }}">
+								<img src="{{ asset('buttons/detail.png') }}" width="40" height="40">
+							</a>
+							<a class="text-decoration-none" href="{{ path('subject_edit', {'id' : subject.id }) }}">
+								<img src="{{ asset('buttons/edit.png') }}" width="40" height="40">
+							</a>
+							<a class="text-decoration-none" href="{{ path('subject_delete', {'id' : subject.id }) }}" onclick="return confirm('Are you sure to delete this class ?');">
+								<img src="{{ asset('buttons/delete.png') }}" width="40" height="40">
+							</a>
+						{% else %}
+							<a class="text-decoration-none" href="{{ path('subject_detail', {'id' : subject.id }) }}">
+								<img src="{{ asset('buttons/detail.png') }}" width="40" height="40">
+							</a>
+						{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+{% endblock %}

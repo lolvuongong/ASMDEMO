@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List of Majors!
+{% endblock %}
+
+{% block body %}
+	<div class="container col-md-8 text-center mt-3">
+		<table class="table table-light">
+			<tr>
+				<th colspan="4">
+					<h1 class="text text-primary">Major List</h1>
+				</th>
+			</tr>
+			<tr>
+				<th class="text text-success">Major ID</th>
+				<th class="text text-success">Major Name</th>
+			</tr>
+			{% for major in major %}
+				<tr>
+					<td>{{ major.id }}</td>
+					<td>{{ major.name }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List of classes!
+{% endblock %}
+
+{% block body %}
+	<div class="container col-md-8 text-center mt-3">
+		<table class="table table-light">
+			<tr>
+				<th colspan="4">
+					<h1 class="text text-primary">Semester List</h1>
+				</th>
+			</tr>
+			<tr>
+				<th class="text text-success">Semester ID</th>
+				<th class="text text-success">Semester</th>
+                <th class="text text-success">Semester period</th>
+			</tr>
+			{% for semester in semesters %}
+				<tr>
+					<td>{{ semester.id }}</td>
+					<td>{{ semester.name }}</td>
+                    <td>{{ semester.period }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+{% endblock %}

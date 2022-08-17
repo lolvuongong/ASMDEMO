@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List of students!
+{% endblock %}
+
+{% block body %}
+	<div class="container col-md-8 text-center mt-3">
+		<table class="table table-light">
+			<tr>
+				<th colspan="6">
+					<h1 class="text text-primary">Student List</h1>
+				</th>
+				{% if is_granted('ROLE_ADMIN') %}
+				<th><a href="{{ path('student_add') }}" class="btn btn-info mt-2">Add student</a></th>
+				{% endif %}
+			</tr>
+			<tr>
+				<th class="text text-success">Student ID</th>
+				<th class="text text-success">Student Name</th>
+				<th class="text text-success">Student Class</th>
+				<th class="text text-success">Student Major</th>
+				<th class="text text-success">Student Image</th>
+				<th class="text text-success">Check detail</th>
+			</tr>
+			{% for student in students %}
+				<tr>
+					<td>{{ student.id }}</td>
+					<td>{{ student.name }}</td>
+					<td>
+							{% if student.classes == null %}
+								<i>Undefined</i>
+							{% else %}
+								<a href="{{ path('classes_detail', {'id' : student.classes.id }) }} ">{{ student.classes.name }}</a>
+								<br>
+							{% endif %}
+						</a>
+					</td>
+					<td>
+							{% if student.major == null %}
+								<i>Undefined</i>
+							{% else %}
+								<a href="{{ path('major_detail', {'id' : student.major.id }) }} ">{{ student.major.name }}</a>
+								<br>
+							{% endif %}
+						</a>
+					</td>
+					<td><img src="{{ student.image }}" width="100" height="100"></td>
+					<td>
+					{% if is_granted('ROLE_ADMIN') %}
+						<a class="text-decoration-none" href="{{ path('student_detail', {'id' : student.id }) }}">
+							<img src="{{ asset('buttons/detail.png') }}" width="40" height="40">
+						</a>
+						<a class="text-decoration-none" href="{{ path('student_edit', {'id' : student.id }) }}">
+							<img src="{{ asset('buttons/edit.png') }}" width="40" height="40">
+						</a>
+						<a class="text-decoration-none" href="{{ path('student_delete', {'id' : student.id }) }}" onclick="return confirm('Are you sure to delete this book ?');">
+							<img src="{{ asset('buttons/delete.png') }}" width="40" height="40">
+						</a>
+					{% else %}
+												<a class="text-decoration-none" href="{{ path('student_detail', {'id' : student.id }) }}">
+							<img src="{{ asset('buttons/detail.png') }}" width="40" height="40">
+						</a>
+					{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+{% endblock %}

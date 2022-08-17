@@ -1,0 +1,16 @@
+{% form_theme subjectForm 'bootstrap_5_layout.html.twig' %}
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container col-md-8 text-center mt-3">
+   <div class="card p-3 bg-light">
+      <h3 class="alert alert-primary">Edit subjects' information</h3>
+      {{ form_start(subjectForm) }}
+         
+      {{ form_widget(subjectForm)}}
+      <input class="btn btn-outline-danger" type="submit" value="Edit">
+
+      {{ form_end(subjectForm) }}
+   </div>
+</div>
+{% endblock %}
