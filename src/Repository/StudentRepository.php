@@ -53,26 +53,26 @@ class StudentRepository extends ServiceEntityRepository
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
+    return $this->createQueryBuilder('s')
+    ->andWhere('s.exampleField = :val')
+    ->setParameter('val', $value)
+    ->orderBy('s.id', 'ASC')
+    ->setMaxResults(10)
+    ->getQuery()
+    ->getResult()
+    ;
+    }
+     */
+
+    public function searchBook($keyword)
+    {
+        return $this->createQueryBuilder('student')
+            ->andWhere('student.name LIKE :key')
+            ->setParameter('key', '%' . $keyword . '%')
+            ->setMaxResults(20)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Student
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

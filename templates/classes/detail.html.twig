@@ -1,26 +1,41 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-<div class="container col-md-8 text-center mt-3">
-   <div class="row">
-      {# <div class="col-4">
-         <div class="card">
-            <img src="{{ asset('images/books/'~book.image)}}" width="300" height="300">
-         </div>
-      </div> #}
-      <div class="col-6">
-         <table class="table table-bordered">
-            <tr>
-               <th colspan="2" class="bg-light">
-                  <h2 class="text-danger">{{ classes.name }} </h2>
-               </th>
-            </tr>
-            <tr class="h4">
-               <th>Info</th>
-               <td>{{ classes.info }}</td>
-            </tr>
-         </table>
-      </div>
-   </div>
-</div>
+	<tr class="h4">
+		<th>Student List</th>
+		{% if classes.students == null %}
+			<i>Undefined</i>
+		{% else %}
+			<td>
+				{% for student in classes.students %}
+					<a class="text-decoration-none" href="{{ path('student_detail', {'id' : student.id })}}">
+						{{ student.name }}
+					</a>
+					<br>
+				{% endfor %}
+			</td>
+			<tr class="h4">
+				<th>Total students</th>
+				<td>{{ classes.students.count }}</td>
+			</tr>
+		{% endif %}
+	</tr>
+	<div class="container col-md-8 text-center mt-3">
+		<div class="row">
+			<div class="col-6">
+				<table class="table table-bordered">
+					<tr>
+						<th colspan="2" class="bg-light">
+							<h2 class="text-danger">{{ classes.name }}
+							</h2>
+						</th>
+					</tr>
+					<tr class="h4">
+						<th>Info</th>
+						<td>{{ classes.info }}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
 {% endblock %}

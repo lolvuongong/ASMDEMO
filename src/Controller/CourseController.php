@@ -24,30 +24,13 @@ class CourseController extends AbstractController
     }
 
     #[IsGranted('ROLE_ADMIN')]
-    #[Route('/detail/{id}', name: 'course_detail_admin')]
+    #[Route('/detail/{id}', name: 'course_detail')]
     public function CourseDetailAdmin($id, CourseRepository $courseRepository)
     {
         $course = $courseRepository->find($id);
         if ($course == null) {
             $this->addFlash('Warning', 'Invalid course id !');
             return $this->redirectToRoute('course_index');
-        }
-        return $this->render(
-            'course/detail.html.twig',
-            [
-                'course' => $course
-            ]
-        );
-    }
-
-    #[IsGranted('ROLE_USER')]
-    #[Route('/detail/{id}', name: 'course_detail')]
-    public function CourseDetail($id, CourseRepository $courseRepository)
-    {
-        $course = $courseRepository->find($id);
-        if ($course == null) {
-            $this->addFlash('Warning', 'Invalid course id !');
-            return $this->redirectToRoute('home');
         }
         return $this->render(
             'course/detail.html.twig',

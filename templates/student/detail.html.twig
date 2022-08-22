@@ -1,64 +1,71 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-<div class="container col-md-8 text-center mt-3">
-   <div class="row">
-      {# <div class="col-4">
-         <div class="card">
-            <img src="{{ asset('images/books/'~book.image)}}" width="300" height="300">
-         </div>
-      </div> #}
-      <div class="col-6">
-         <table class="table table-bordered">
-            <tr>
-               <th colspan="2" class="bg-light">
-                  <h2 class="text-danger">{{ student.name }} </h2>
-               </th>
-            </tr>
-            <tr class="h4">
-               <th>Email</th>
-               <td>{{ student.email }}</td>
-            </tr>
-            <tr class="h4">
-               <th>Major</th>
-                {% if student.major == null %}
-                <td><i>Undefined</i></td>
-                {% else %}      
-                <td><a href="{{ path('major_detail', {'id' : student.major.id }) }} ">{{ student.major.name }}</a> <br></td>
-                {% endif %}
-            </tr>
-            <tr class="h4">
-               <th>Phone number</th>
-               <td>{{ student.phone }} </td>
-            </tr>
-            <tr class="h4">
-               <th>Class(s)</th>
-               <td>
-               {% if student.classes == null %}
-                    <i>Undefined</i>
-               {% else %}
-                    <a href="{{ path('classes_detail', {'id' : student.classes.id }) }} ">{{ student.classes.name }}</a> <br>
-               {% endif %}
-               </td>
-            </tr>
-            <tr class="h4">
-               <th>Course(s)</th>
-               <td>
-               {% if student.course == null %}
-                    <i>Undefined</i>
-               {% else %}
-               {% for course in student.course %}
-                    <a class="text-decoration-none" href="{{ path('course_detail', {'id' : course.id })}}">
-                     {{ course.name }} 
-                    </a>
-                     <br>
-               {% endfor %}
-               {% endif %}
-            </tr>
-               </td>
-            </tr>
-         </table>
-      </div>
-   </div>
-</div>
-{% endblock %}
+	<div class="container col-md-8 text-center mt-3">
+		<div
+			class="row">
+			{# <div class="col-4">
+			         <div class="card">
+			            <img src="{{ asset('images/books/'~book.image)}}" width="300" height="300">
+			         </div>
+			      </div> #}
+			<div class="col-6">
+				<table class="table table-bordered">
+					<tr>
+						<th colspan="2" class="bg-light">
+							<h2 class="text-danger">{{ student.name }}
+							</h2>
+						</th>
+					</tr>
+					<tr class="h4">
+						<th>Email</th>
+						<td>{{ student.email }}</td>
+					</tr>
+					<tr class="h4">
+						<th>Major</th>
+						{% if student.major == null %}
+							<td>
+								<i>Undefined</i>
+							</td>
+						{% else %}
+							<td>
+								<a href="{{ path('major_detail', {'id' : student.major.id }) }} ">{{ student.major.name }}</a>
+								<br></td>
+						{% endif %}
+					</tr>
+					<tr class="h4">
+						<th>Phone number</th>
+						<td>{{ student.phone }}
+						</td>
+					</tr>
+					<tr class="h4">
+						<th>Class(s)</th>
+						<td>
+							{% if student.classes == null %}
+								<i>Undefined</i>
+							{% else %}
+								<a href="{{ path('classes_detail', {'id' : student.classes.id }) }} ">{{ student.classes.name }}</a>
+								<br>
+							{% endif %}
+						</td>
+					</tr>
+					<tr class="h4">
+						<th>Course(s)</th>
+						<td>
+							{% if student.course == null %}
+								<i>Undefined</i>
+							{% else %}
+								{% for course in student.course %}
+									<a class="text-decoration-none" href="{{ path('course_detail', {'id' : course.id })}}">
+										{{ course.name }}
+									</a>
+									<br>
+								{% endfor %}
+							{% endif %}
+						</td>
+					</tr>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div></div>{% endblock %}
